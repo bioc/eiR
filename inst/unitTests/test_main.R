@@ -3,6 +3,9 @@ library(eiR)
 library(snow)
 library(DBI)
 
+#debug=TRUE
+debug=FALSE
+
 options(warn=2)
 #options(error=dump.frames)
 options(warnPartialMatchDollar=TRUE)
@@ -18,6 +21,7 @@ fpDir=file.path(test_dir,"fp_test")
 descType="ap"
 
 sqliteSource=function(reset=FALSE){
+	if(debug) message("initializeing sqlite source")
 	require(eiR)
 	require(RSQLite)
 	path = file.path(test_dir,"data")
@@ -54,8 +58,6 @@ connSource(TRUE) # reset postgres
 
 lastRunId=0
 
-#debug=TRUE
-debug=FALSE
 
 
 test_aa.eiInit <- function() {
