@@ -1,11 +1,11 @@
 Package: eiR
 Type: Package
 Title: Accelerated similarity searching of small molecules
-Version: 1.47.0
-Date: 2023-04-14
+Version: 1.47.1
+Date: 2025-02-11
 Author: Kevin Horan, Yiqun Cao and Tyler Backman
 Maintainer: Thomas Girke <thomas.girke@ucr.edu>
-Suggests:   BiocStyle, knitcitations, knitr, knitrBootstrap,rmarkdown,RSQLite
+Suggests:   BiocStyle, knitcitations, knitr, knitrBootstrap,rmarkdown,RSQLite,codetools
 Description: The eiR package provides utilities for accelerated
         structure similarity searching of very large small molecule
         data sets using an embedding and indexing approach.
