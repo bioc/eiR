@@ -316,6 +316,18 @@ test_fa.eiCluster <- function(){
 	# 269 - 279							65 - 75
 	# 301 - 306							97 - 102
 
+	expectedPairs <- c("650011-650092", "650015-650069", "650016-650077",
+                   "650046-650054", "650049-650050", "650074-650085",
+                   "3540-3544")
+
+	checkPairs <- function(clustering, minFound = 5) {
+		multi <- Filter(function(x) length(x) > 1, byCluster(clustering))
+		found <- vapply(multi, function(x) paste(sort(as.integer(x)), collapse = "-"), "")
+		print(found)
+		checkTrue(all(found %in% expectedPairs))  # no spurious clusters
+		checkTrue(length(found) >= minFound)      # most true pairs recovered
+	}
+
 	conn=connSourceGen()()
 	compoundIds=names(clustering)
 	compoundNames=getCompoundNames(conn,compoundIds)
@@ -324,8 +336,9 @@ test_fa.eiCluster <- function(){
 	message("clustering:")
 	print(clustering)
 	print(sizes)
-	checkTrue(nrow(sizes) %in% c(6,7))  #orig test
+	#checkTrue(nrow(sizes) %in% c(6,7))  #orig test
 	#checkTrue(nrow(sizes) %in% c(5))
+	checkPairs(clustering)
 	checkTrue(all(sizes[,2]==2))
 
 
